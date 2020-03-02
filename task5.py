@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-def circle (path):
+
+def circle(path):
     x = y = 0
     for i in range(len(path)):
         direction = path[i]
@@ -13,6 +14,7 @@ def circle (path):
         elif direction == 'L':
             x -= 1
     return x, y
+
 
 s = input()
 a = circle(s)

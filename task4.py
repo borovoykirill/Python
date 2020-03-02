@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-s0 = input()
-l = s0.split()
-s1 = '-'.join(l)
+s0 = input().split()
+s1 = '-'.join(s0)
 print(s1)
