@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+import psutil
+import argparse
+import time
+import json
+import threading
+
+parser = argparse.ArgumentParser()
+parser.add_argument("data_type", help="Specify the data types. Default value - txt",
+                    const=1, default="txt", nargs="?")
+parser.add_argument("time_out", help="Specify timeout. Default value - 5m", type=int,
+                    const=1, default=300, nargs="?")
+args = parser.parse_args()
+time_out = args.time_out
+data_type = args.data_type
+
+
+class HostInfo:
+    def __init__(self):
+        file0 = open('host_info.txt', 'w')
+        file0.close()
+        file1 = open('host_info.txt', 'w')
+        file1.close()
+
+    def ocl(self):  # Overall CPU load
+        ocl = str(psutil.cpu_percent(interval=time_out))
+        return ocl
+
+    def omu(self):  # Overall memory usage
+        omu = str(psutil.disk_usage('/').percent)
+        return omu
+
+    def ovmu(self):  # Overall virtual memory usage
+        ovmu = str(psutil.virtual_memory().percent)
+        return ovmu
+
+    def ioi(self):  # IO information
+        ioi = str(psutil.disk_io_counters(perdisk=False))
+        return ioi
+
+    def ni(self):  # Network information
+        ni = str(psutil.net_io_counters(pernic=True))
+        return ni
+
+
+def create_json(json_dict):
+    with open('host_info.json', 'a') as file:
+        json.dump(json_dict, file, indent=2)
+        json_file = open('host_info.json', 'a+')
+        json_file.write('\n')
+        json_file.close()
+
+
+def output_data():
+    threading.Timer(time_out, output_data)
+    data = HostInfo()
+    from itertools import count
+    for i in count(1):
+        if data_type == 'txt':
+            output = "SNAPSHOT " + str(i) + ": " + "TIMESTAMP: " + str(time.ctime()) \
+                     + " Overall CPU load:" + data.ocl() + "%" \
+                     + " Overall memory usage: " + data.omu() \
+                     + "% Overall virtual memory usage: " + data.ovmu() \
+                     + "% IO information: " + data.ioi() \
+                     + " Network information: " + data.ni() + '\n'
+            txt_file = open('host_info.txt', 'a')
+            txt_file.write(output)
+            txt_file.close()
+        elif data_type == 'json':
+            json_data = {
+                'SNAPSHOT': str(i), 'TIMESTAMP': str(time.ctime()),
+                'Overall CPU load': data.ocl(),
+                'Overall memory usage': data.omu(),
+                'Overall virtual memory usage': data.ovmu(),
+                'IO information': data.ioi(),
+                'Network information': data.ni()
+            }
+            create_json(json_data)
+
+
+output_data()
