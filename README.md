@@ -16,8 +16,8 @@ Overall CPU load
 ● Network information 
 
 **_How to install package_** <br>
-1) git clone <repository>
-2) cd <repository>
+1) git clone https://github.com/borovoykirill/devops_lab.git
+2) cd devops_lab
 2) pip install wheel
 3) python3 setup.py bdist_wheel --universal
 4) After that you can copy file snapshot*.whl from folder dist and there enter command "pip install *file-name.whl*"
