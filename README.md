@@ -21,8 +21,8 @@ Overall CPU load
 2) pip install wheel
 3) python3 setup.py bdist_wheel --universal
 4) After that you can copy file snapshot*.whl from folder dist and there enter command "pip install *file-name.whl*"
-5) Type command - snapshot
+5) Type command - *snapshot*
 6) In your current directory will appear JSON with info about host.
 
 **_How to uninstall package_** <br>
-Type command - pip uninstall *snapshot*.whl*
+Type command - pip uninstall *snapshot*.whl
