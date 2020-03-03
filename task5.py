@@ -19,7 +19,4 @@ def circle(path):
 s = input()
 a = circle(s)
 
-if a == (0, 0):
-    print('True')
-else:
-    print('False')
+print(a == (0, 0))
