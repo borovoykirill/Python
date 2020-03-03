@@ -3,7 +3,7 @@
 n = int(input())
 marks = {}
 for i in range(n):
-    name, *m = input().split(' ')
+    name, *m = input().split()
     avg_marks = sum(list(map(float, m))) / 3
     a = {name: avg_marks}
     marks.update(a)
