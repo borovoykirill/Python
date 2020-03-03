@@ -10,6 +10,6 @@ for i in range(min(l0, l1)):
 l2 = abs(l0 - l1)
 if l0 > l1:
     for i in range(l2):
-        result.update({int(keys[l1 + i]): "None"})
+        result.update({int(keys[l1 + i]): None})
 s = str(result)
 print(s.replace("'", ''))
