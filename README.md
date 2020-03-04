@@ -16,8 +16,8 @@
 5) ./pr-stats *-some-key*. Be careful, after starting the script, he will ask you to enter<br> 
 your username on the github and password.<br>  
 
-For example:
-Input: ./pr-stats -owner alenaPy -repo devops_lab -number 12 -status -created -label -basic -user -comments -commit*<br>
+For example:<br>
+Input: *./pr-stats -owner alenaPy -repo devops_lab -number 12 -status -created -label -basic -user -comments -commit*<br>
 Output:<br>
 Title of pull request: Homework1: Vitali Andrushkevich<br>
 Source of pull request: Vitalyazavr/devops_lab<br>
@@ -31,7 +31,7 @@ Number of commits created: 1<br>
 User who opened pull request: Vitalyazavr<br>
 Attached labels: accepted<br>
 
-__N.B. To clarify information which keys can be used, please type ./pr-stats -h__<br> 
+__N.B. To clarify information which keys can be used, please type *./pr-stats* -h__<br> 
 optional arguments:<br>
   -h, --help      show this help message and exit<br>
   -version        Application version<br>
