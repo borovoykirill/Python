@@ -60,4 +60,7 @@ if args.user:
     print("User who opened pull request: " + json_data['head']['repo']['owner']['login'])
 
 if args.label:
-    print("Attached labels: " + json_data['labels'][0]['name'])
+    if json_data['labels'] == []:
+        print("Attached labels: None")
+    else:
+        print("Attached labels: " + json_data['labels'][0]['name'])
