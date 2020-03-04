@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+
+import argparse
+import requests
+import getpass
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-version", action="version", version='pr-stats v0.1',
+                    help="Application version")
+parser.add_argument("-owner", required=True, nargs=1, help="<repository owner>")
+parser.add_argument("-repo", required=True, nargs=1, help="<repository name>")
+parser.add_argument("-number", required=True, nargs=1, help="<pull request number>")
+parser.add_argument("-status", action="store_true", help="Pull request status")
+parser.add_argument("-basic", action="store_true",
+                    help="Basic statistics about merged/closed rate.")
+parser.add_argument("-created", action="store_true",
+                    help="Date of creating pull request and updated")
+parser.add_argument("-comments", action="store_true",
+                    help="Number of comments created")
+parser.add_argument("-commits", action="store_true",
+                    help="Number of commits created")
+parser.add_argument("-user", action="store_true", help="User who opened pull request")
+parser.add_argument("-label", action="store_true", help="Attached labels")
+args = parser.parse_args()
+
+print("Enter name of user:")
+usr = input()
+try:
+    pswd = getpass.getpass(prompt='Enter user password: ')
+except Exception as error:
+    print('ERROR', error)
+req = requests.get(
+    'https://api.github.com/repos/' + args.owner[0] +
+    '/' + args.repo[0] + '/pulls/' + args.number[0] + ".json", auth=(usr, pswd))
+
+json_data = req.json()
+
+print("Title of pull request: " + json_data['title'])
+print("Source of pull request: " + json_data['head']['repo']['full_name'])
+
+if args.status:
+    print("Pull request status: " + json_data['state'])
+
+if args.created:
+    print("Created: " + json_data['created_at'])
+    print("Updated: " + json_data['updated_at'])
+
+if args.basic:
+    print("Merged: " + str(json_data['merged_at']))
+    print("Closed: " + str(json_data['closed_at']))
+
+if args.comments:
+    print("Number of comments created: " + str(json_data['comments']))
+
+if args.commits:
+    print("Number of commits created: " + str(json_data['commits']))
+
+if args.user:
+    print("User who opened pull request: " + json_data['head']['repo']['owner']['login'])
+
+if args.label:
+    print("Attached labels: " + json_data['labels'][0]['name'])
