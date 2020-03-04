@@ -17,7 +17,7 @@
 your username on the github and password.<br>  
 
 For example:<br>
-Input: *./pr-stats -owner alenaPy -repo devops_lab -number 12 -status -created -label -basic -user -comments -commit*<br>
+Input: __*./pr-stats -owner alenaPy -repo devops_lab -number 12 -status -created -label -basic -user -comments -commit*__<br>
 Output:<br>
 Title of pull request: Homework1: Vitali Andrushkevich<br>
 Source of pull request: Vitalyazavr/devops_lab<br>
