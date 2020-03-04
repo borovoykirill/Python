@@ -29,6 +29,7 @@ try:
     pswd = getpass.getpass(prompt='Enter user password: ')
 except Exception as error:
     print('ERROR', error)
+
 req = requests.get(
     'https://api.github.com/repos/' + args.owner[0] +
     '/' + args.repo[0] + '/pulls/' + args.number[0] + ".json", auth=(usr, pswd))
