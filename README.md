@@ -8,7 +8,7 @@
   <dd>install git</dd>
 </dl>
 
-**_How to use script_** <br>
+**_Description_** <br>
 This script is used to get information about pool request.<br>
 
 **_How to use script_** <br>
