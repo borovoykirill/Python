@@ -9,6 +9,9 @@
 </dl>
 
 **_How to use script_** <br>
+This script is used to get information about pool request.<br>
+
+**_How to use script_** <br>
 1) git clone https://github.com/borovoykirill/devops_lab.git<br>
 2) cd devops_lab<br>
 3) checkout -b homework4<br>
