@@ -28,7 +28,7 @@ usr = input()
 try:
     pswd = getpass.getpass(prompt='Enter user password: ')
 except Exception as error:
-    print('ERROR', error)
+    print('Error: password is required', error)
 
 req = requests.get(
     'https://api.github.com/repos/' + args.owner[0] +
