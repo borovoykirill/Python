@@ -7,10 +7,10 @@ from datetime import datetime
 parser = argparse.ArgumentParser()
 parser.add_argument("-version", action="version", version='dir-stats v0.1',
                     help="Application version")
-parser.add_argument("-dir", nargs="?", const=1, default=".",
+parser.add_argument("-dir", nargs="?", const=1, default='.',
                     help="Output files only from the parent directory")
 parser.add_argument("-recurs", nargs=1, help="List files recursively")
-parser.add_argument("-ext", nargs=2, help="Filter by file extension")
+parser.add_argument("-ext", nargs=1, help="Filter by file extension")
 parser.add_argument("-fname", nargs=1, help="Order output by filename")
 parser.add_argument("-fdate", nargs=1, help="Order output by date")
 args = parser.parse_args()
@@ -24,7 +24,7 @@ def dir_files(path):
 
 
 if args.dir:
-    dir_files(args.dir[0])
+    dir_files(args.dir)
 
 
 # "List files recursively"
@@ -44,7 +44,7 @@ if args.recurs:
 # "Filter by file extension"
 def files_extension(path):
     for file in os.listdir(path):
-        if file.endswith('.' + args.ext[1]):
+        if file.endswith('.' + args.ext[0]):
             print(os.path.join(path, file))
 
 
@@ -52,23 +52,10 @@ if args.ext:
     files_extension(args.ext[0])
 
 # "Order by name"
-namelist = []
-
-
-def list_files(path):
-    with os.scandir(path) as entries:
-        for entry in entries:
-            if entry.is_file():
-                namelist.append(str(entry.name))
-                namelist.sort()
-            elif entry.is_dir():
-                list_files(entry.path)
-
-
 if args.fname:
-    list_files(args.fname[0])
-    print("\n".join(str(x) for x in namelist))
-
+    list_dir = os.listdir(args.fname[0])
+    sorted(list_dir)
+    print(list_dir)
 
 # "Order output by date"
 def convert_date(timestamp):
