@@ -61,4 +61,6 @@ if args.user:
 
 if args.label:
     if json_data['labels']:
-        print("Attached labels: ", json_data['labels'][0]['name'])
+        print("Attached labels: " + json_data['labels'][0]['name'])
+    else:
+        print("Attached labels: None")
