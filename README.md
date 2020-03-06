@@ -3,8 +3,7 @@
 #### Home task: 05
 
 ##Application for Traversing Directories
-<br>
-**Description** <br>
+
 <dl>
   <dt>Requirements:</dt>
   <dd>install python environment : 3.0.0 +</dd>
@@ -12,11 +11,11 @@
 <br>
 <dl>
   <dt>Script which lists files of the specified directory. Add the following options:</dt>
-  <dd>output files only from the parent directory </dd>
-  <dd>list files recursively </dd>
-  <dd>filter by file extension </dd>
-  <dd>order output by filename </dd>
-  <dd>order output by date of creation </dd>
+  <dd> - output files only from the parent directory </dd>
+  <dd> - list files recursively </dd>
+  <dd> - filter by file extension </dd>
+  <dd> - order output by filename </dd>
+  <dd> - order output by date of creation </dd>
 </dl>
 <br>
 <dl>
