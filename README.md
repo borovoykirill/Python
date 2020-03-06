@@ -18,11 +18,6 @@
   <dd> - order output by date of creation </dd>
 </dl>
 <br>
-<dl>
-  <dt>Requirements:</dt>
-  <dd>install python environment : 3.0.0 +</dd>
-</dl>
-
 
 $ ./task1.py -h <br>                    
 usage: task1.py [-h] [-version] -dir DIR [-rec] [-ext [EXT]] [-date]<br>
