@@ -2,7 +2,7 @@
 
 #### Home task: 05
 
-##**Application for Traversing Directories** <br>
+##Application for Traversing Directories
 <br>
 **Description** <br>
 <dl>
