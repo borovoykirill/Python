@@ -5,74 +5,44 @@ import os
 from datetime import datetime
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-version", action="version", version='dir-stats v0.1',
+parser.add_argument("-version", action="version", version='list-files v0.1',
                     help="Application version")
-parser.add_argument("-dir", nargs="?", const=1, default='.',
+parser.add_argument("-path", required=True,
                     help="Output files only from the parent directory")
-parser.add_argument("-recurs", nargs=1, help="List files recursively")
-parser.add_argument("-ext", nargs=1, help="Filter by file extension")
-parser.add_argument("-fname", nargs=1, help="Order output by filename")
-parser.add_argument("-fdate", nargs=1, help="Order output by date")
+parser.add_argument("-rec", action="store_true", help="List files recursively")
+parser.add_argument("-ext", nargs="?", const=1, default="", help="Filter by file extension")
+parser.add_argument("-date", action="store_true", help="Order output by date")
 args = parser.parse_args()
 
 
-# "Output files only from the parent directory"
-def dir_files(path):
-    for entry in os.listdir(path):
-        if os.path.isfile(os.path.join(path, entry)):
-            print(entry)
+def get_date(m_time):
+    d = datetime.utcfromtimestamp(m_time)
+    date = d.strftime("%Y %m %d")
+    return date
 
 
-if args.dir:
-    dir_files(args.dir)
-
-
-# "List files recursively"
-def files_recursive(path):
-    if args.recurs:
-        for dirpath, dirs, files in os.walk(path):
-            path = dirpath.split('/')
-            print('|', (len(path)) * '---', '[', os.path.basename(dirpath), ']')
-        for f in files:
-            print('|', len(path) * '---', f)
-
-
-if args.recurs:
-    files_recursive(args.recurs[0])
-
-
-# "Filter by file extension"
-def files_extension(path):
-    for file in os.listdir(path):
-        if file.endswith('.' + args.ext[0]):
-            print(os.path.join(path, file))
-
+data_list = []
 
 if args.ext:
-    files_extension(args.ext[0])
-
-# "Order by name"
-if args.fname:
-    list_dir = os.listdir(args.fname[0])
-    sorted(list_dir)
-    print(list_dir)
-
-# "Order output by date"
-def convert_date(timestamp):
-    d = datetime.utcfromtimestamp(timestamp)
-    formated_date = d.strftime('%d %b %Y')
-    return formated_date
+    filter_ext = args.ext
+else:
+    filter_ext = ""
 
 
-def list_files(path):
+def file_list(path):
     with os.scandir(path) as entries:
         for entry in entries:
-            if entry.is_file():
-                info = entry.stat()
-                print(f'{convert_date(info.st_mtime)}\t {entry.name} ')
-            elif entry.is_dir():
-                list_files(entry.path)
+            if entry.is_file() and entry.name.endswith(filter_ext):
+                if args.date:
+                    info = entry.stat()
+                    data_list.append(f"Date: {get_date(info.st_mtime)} | {entry.name}")
+                else:
+                    data_list.append(entry.name)
+            elif entry.is_dir() and args.rec:
+                file_list(entry.path)
 
 
-if args.fdate:
-    list_files(args.fdate[0])
+file_list(args.path)
+data_list.sort()
+for i in data_list:
+    print(i)
