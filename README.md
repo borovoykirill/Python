@@ -20,12 +20,12 @@
 <br>
 
 $ ./task1.py -h <br>                    
-usage: task1.py [-h] [-version] -dir DIR [-rec] [-ext [EXT]] [-date]<br>
+usage: task1.py [-h] [-version] -path PATH [-rec] [-ext [EXT]] [-date]<br>
 
 Optional arguments:<br>
-  -h, --help  show this help message and exit<br>
+  -h, --help  Show this help message and exit<br>
   -version    Application version<br>
-  -path DIR    Output files only from the parent directory<br>
+  -path PATH  Output files only from the parent directory<br>
   -rec        List files recursively<br>
   -ext [EXT]  Filter by file extension<br>
   -date       Order output by date<br>
