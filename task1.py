@@ -35,7 +35,7 @@ def file_list(path):
             if entry.is_file() and entry.name.endswith(filter_ext):
                 if args.date:
                     info = entry.stat()
-                    data_list.append(f"Date: {get_date(info.st_mtime)} | {entry.name}")
+                    data_list.append(f"Last modification: {get_date(info.st_mtime)} | {entry.name}")
                 else:
                     data_list.append(entry.name)
             elif entry.is_dir() and args.rec:
