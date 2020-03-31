@@ -16,7 +16,7 @@ This script is used to get information about pool request.<br>
 2) cd devops_lab<br>
 3) checkout -b homework4<br>
 4) chmod +x pr-stats<br>
-5) ./pr-stats *-some-key*. Be careful, after starting the script, he will ask you to enter<br> 
+5) ./pr-stats *-some-key*. Be careful, after starting the script, it will ask you to enter<br>
 your username on the github and password.<br>  
 
 For example:<br>
@@ -34,7 +34,7 @@ Number of commits created: 1<br>
 User who opened pull request: Vitalyazavr<br>
 Attached labels: accepted<br>
 
-__N.B. To clarify information which keys can be used, please type *./pr-stats* -h__<br> 
+__N.B. To clarify information which keys can be used, please type *./pr-stats* -h__<br>
 optional arguments:<br>
   -h, --help      show this help message and exit<br>
   -version        Application version<br>
